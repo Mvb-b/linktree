@@ -1,0 +1,13 @@
+{
+  "name": "misrravb-linktree",
+  "version": 2,
+  "env": {
+    "CRON_SECRET": "@cron_secret"
+  },
+  "crons": [
+    {
+      "path": "/api/cron/recaudador",
+      "schedule": "0 */6 * * *"
+    }
+  ]
+}
