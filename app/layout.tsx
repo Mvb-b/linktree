@@ -22,6 +22,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dev-linktree.misrravb.com'),
   title: {
     default: 'MisrraVB | Streamer Fracasado',
     template: '%s | MisrraVB',
