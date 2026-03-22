@@ -1,52 +1,41 @@
 {
-  "task": "SEO y OpenGraph mejoras",
+  "task": "Analytics tracking para LinkTree",
   "status": "completed",
-  "timestamp": "2025-03-22T11:35:00Z",
+  "timestamp": "2026-03-22T12:25:00Z",
+  "summary": "Sistema de analytics privado (SQLite) para trackear clicks en links sociales y newsletter",
   "deliverables": {
-    "layout.tsx": {
-      "status": "verified",
-      "notes": "Metadata completa con OpenGraph, Twitter Cards, SEO keywords, iconos"
-    },
-    "robots.txt": {
-      "status": "created",
-      "path": "public/robots.txt",
-      "content": "User-agent rules para Google, FB, Twitter, Discord, WhatsApp + sitemap"
-    },
-    "sitemap.xml": {
-      "status": "created",
-      "path": "app/sitemap.ts",
-      "notes": "Generado dinámicamente por Next.js"
-    },
-    "opengraph-image.tsx": {
-      "status": "verified",
-      "dimensions": "1200x630px",
-      "content": "Imagen dinámica con gradiente gaming, nombre de Misra, redes"
-    },
-    "twitter-image.tsx": {
-      "status": "verified",
-      "dimensions": "1200x600px",
-      "content": "Twitter Card optimizada"
-    },
-    "icons": {
-      "status": "created",
+    "api": {
+      "status": "completed",
       "files": [
-        "public/icon-192x192.png",
-        "public/icon-512x512.png",
-        "public/apple-touch-icon.png",
-        "public/favicon.ico"
+        "app/api/analytics/track/route.ts",
+        "app/api/analytics/stats/route.ts",
+        "app/api/analytics/click/route.ts (legacy)"
+      ],
+      "database": "SQLite con better-sqlite3",
+      "features": [
+        "POST /api/analytics/track - Registrar clicks",
+        "GET /api/analytics/stats - Obtener estadísticas"
       ]
     },
-    "manifest.json": {
-      "status": "verified"
+    "frontend": {
+      "status": "completed",
+      "files": [
+        "hooks/useAnalytics.ts - Actualizado",
+        "components/NewsletterButton.tsx - Tracking agregado",
+        "components/NewsletterModal.tsx - Tracking eventos agregado"
+      ]
+    },
+    "dashboard": {
+      "status": "completed",
+      "path": "/admin/analytics",
+      "url": "https://dev-linktree.misrravb.com/admin/analytics"
+    },
+    "documentation": {
+      "status": "completed",
+      "file": "docs/ANALYTICS.md"
     }
   },
-  "seo_features": {
-    "opengraph": ["og:title", "og:description", "og:image", "og:url", "og:type", "og:siteName", "og:locale"],
-    "twitter_cards": ["twitter:card", "twitter:title", "twitter:description", "twitter:creator", "twitter:site", "twitter:image"],
-    "seo_basic": ["title", "description", "keywords", "canonical", "robots", "meta viewport"],
-    "pwa": ["manifest.json", "icons", "theme-color", "apple-touch-icon"]
-  },
+  "privacy": "Sin cookies invasivas, IP hasheada SHA256, self-hosted",
   "build_status": "success",
-  "test_url": "https://www.opengraph.xyz/url/https%3A%2F%2Fdev-linktree.misrravb.com",
-  "notes": "Proyecto ya tenía metadata completa, se crearon robots.txt, sitemap.ts e iconos PNG faltantes"
+  "notes": "Sistema listo para deploy en Coolify"
 }
