@@ -6,23 +6,41 @@ export function useAnalytics() {
   const trackClick = useCallback(async (platform: string, url: string) => {
     try {
       // Don't await, fire and forget for better UX
-      fetch('/api/analytics/click', {
+      fetch('/api/analytics/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ platform, url }),
-        // Keepalive ensures request completes even if page unloads
         keepalive: true,
       }).catch(err => {
-        // Silent fail - don't break user experience
         console.debug('Analytics tracking failed:', err);
       });
     } catch (error) {
-      // Silent fail
       console.debug('Analytics error:', error);
     }
   }, []);
 
-  return { trackClick };
+  const trackEvent = useCallback(async (eventType: string, metadata?: Record<string, string>) => {
+    try {
+      fetch('/api/analytics/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          platform: eventType,
+          url: metadata?.url || (typeof window !== 'undefined' ? window.location.href : ''),
+          ...metadata
+        }),
+        keepalive: true,
+      }).catch(err => {
+        console.debug('Analytics event tracking failed:', err);
+      });
+    } catch (error) {
+      console.debug('Analytics error:', error);
+    }
+  }, []);
+
+  return { trackClick, trackEvent };
 }
