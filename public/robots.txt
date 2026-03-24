@@ -16,7 +16,7 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-Sitemap: https://dev-linktree.misrravb.com/sitemap.xml
+Sitemap: https://dev-linktree.streamerhub.com/sitemap.xml
 
 Disallow: /admin/
 Disallow: /api/
